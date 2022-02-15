@@ -1,0 +1,346 @@
+[
+  {
+    "_id": "61fa3771f03d8194a798fee9",
+    "authors": [
+      "61f8ecb625dd531dfa241e09"
+    ],
+    "yearOfPublication": 1952,
+    "languages": [
+      "french"
+    ],
+    "title": "Le vieil homme et la mer",
+    "avgScore": 5,
+    "numOfReviews": 1
+  },
+  {
+    "_id": "61fa37c881d3bfbb6100996b",
+    "title": "For Whom the Bell Tolls",
+    "authors": [
+      "61f8ecb625dd531dfa241e09"
+    ],
+    "yearOfPublication": 1940,
+    "languages": [
+      "english"
+    ],
+    "avgScore": 2,
+    "numOfReviews": 1
+  },
+  {
+    "_id": "61fa78a57c5bd03112b0aa20",
+    "title": "A farewell to arms",
+    "authors": [
+      "61f8ecb625dd531dfa241e09"
+    ],
+    "yearOfPublication": 1929,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "61fa79cf7c5bd03112b0aa2e",
+    "title": "The Adventures of Oliver Twist",
+    "authors": [
+      "61fa798a7c5bd03112b0aa2b"
+    ],
+    "yearOfPublication": 1838,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "61fa79e97c5bd03112b0aa34",
+    "title": "A Christmas Carol",
+    "authors": [
+      "61fa798a7c5bd03112b0aa2b"
+    ],
+    "yearOfPublication": 1843,
+    "languages": [
+      "english"
+    ],
+    "avgScore": 4,
+    "numOfReviews": 2
+  },
+  {
+    "_id": "61fa7a5a7c5bd03112b0aa3a",
+    "title": "David Copperfield",
+    "authors": [
+      "61fa798a7c5bd03112b0aa2b"
+    ],
+    "yearOfPublication": 1800,
+    "languages": [
+      "english"
+    ],
+    "avgScore": 4,
+    "numOfReviews": 2
+  },
+  {
+    "_id": "61fa81a87c5bd03112b0aa51",
+    "title": "Pride and Prejudice",
+    "authors": [
+      "61fa7c187c5bd03112b0aa4a"
+    ],
+    "yearOfPublication": 1813,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "61fa81ba7c5bd03112b0aa57",
+    "title": "Sense and Sensibility",
+    "authors": [
+      "61fa7c187c5bd03112b0aa4a"
+    ],
+    "yearOfPublication": 1811,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "61fa81c77c5bd03112b0aa5d",
+    "title": "Emma",
+    "authors": [
+      "61fa7c187c5bd03112b0aa4a"
+    ],
+    "yearOfPublication": 1816,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "61fa82327c5bd03112b0aa63",
+    "title": "The Adventures of Huckleberry Finn",
+    "authors": [
+      "61fa7bc67c5bd03112b0aa43"
+    ],
+    "yearOfPublication": 1884,
+    "languages": [
+      "english"
+    ],
+    "avgScore": 4,
+    "numOfReviews": 2
+  },
+  {
+    "_id": "61fa82647c5bd03112b0aa69",
+    "title": "Life on the Mississippi",
+    "authors": [
+      "61fa7bc67c5bd03112b0aa43"
+    ],
+    "yearOfPublication": 1883,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "61fa829a7c5bd03112b0aa6f",
+    "title": "The mysterious stranger",
+    "authors": [
+      "61fa7bc67c5bd03112b0aa43"
+    ],
+    "yearOfPublication": 1916,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "61fa82fec17c434728c6238e",
+    "title": "The Brothers Karamazov",
+    "authors": [
+      "61fa7b607c5bd03112b0aa40"
+    ],
+    "yearOfPublication": 1880,
+    "languages": [
+      "russian"
+    ]
+  },
+  {
+    "_id": "61fa8362c17c434728c6239a",
+    "title": "The house of the dead",
+    "authors": [
+      "61fa7b607c5bd03112b0aa40"
+    ],
+    "yearOfPublication": 1881,
+    "languages": [
+      "russian"
+    ]
+  },
+  {
+    "_id": "6208a21b4ddba4832f412625",
+    "title": "Hamlet",
+    "authors": [
+      "6208a1f44ddba4832f412622"
+    ],
+    "yearOfPublication": 1603,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "6208a22d4ddba4832f41262b",
+    "title": "Romeo and Juliet",
+    "authors": [
+      "6208a1f44ddba4832f412622"
+    ],
+    "yearOfPublication": 1597,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "6208a2404ddba4832f412631",
+    "title": "Macbeth",
+    "authors": [
+      "6208a1f44ddba4832f412622"
+    ],
+    "yearOfPublication": 1673,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "6208a24d4ddba4832f412637",
+    "title": "Othello",
+    "authors": [
+      "6208a1f44ddba4832f412622"
+    ],
+    "yearOfPublication": 1622,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "6208a25c4ddba4832f41263d",
+    "title": "King Lear",
+    "authors": [
+      "6208a1f44ddba4832f412622"
+    ],
+    "yearOfPublication": 1608,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "6208a3614ddba4832f412646",
+    "title": "The Narrative of Arthur Gordon Pym",
+    "authors": [
+      "6208a30d4ddba4832f412643"
+    ],
+    "yearOfPublication": 1838,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "6208a3724ddba4832f41264c",
+    "title": "The Raven",
+    "authors": [
+      "6208a30d4ddba4832f412643"
+    ],
+    "yearOfPublication": 1845,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "6208a3834ddba4832f412652",
+    "title": "The Murders in the Rue Morgue",
+    "authors": [
+      "6208a30d4ddba4832f412643"
+    ],
+    "yearOfPublication": 1895,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "6208a3954ddba4832f412658",
+    "title": "The Gold-Bug",
+    "authors": [
+      "6208a30d4ddba4832f412643"
+    ],
+    "yearOfPublication": 1890,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "6208a3a34ddba4832f41265e",
+    "title": "The Black Cat",
+    "authors": [
+      "6208a30d4ddba4832f412643"
+    ],
+    "yearOfPublication": 1951,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "6208a42d4ddba4832f412667",
+    "title": "Siddhartha",
+    "authors": [
+      "6208a4044ddba4832f412664"
+    ],
+    "yearOfPublication": 1922,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "6208a44a4ddba4832f41266d",
+    "title": "Der Steppenwolf",
+    "authors": [
+      "6208a4044ddba4832f412664"
+    ],
+    "yearOfPublication": 1927,
+    "languages": [
+      "english"
+    ]
+  },
+  {
+    "_id": "6208a4674ddba4832f412673",
+    "title": "Demian: Die Geschichte von Emil Sinclairs Jugend",
+    "authors": [
+      "6208a4044ddba4832f412664"
+    ],
+    "yearOfPublication": 1919,
+    "languages": [
+      "german"
+    ]
+  },
+  {
+    "_id": "6208a47a4ddba4832f412679",
+    "title": "Narziss und Goldmund: Erzählung",
+    "authors": [
+      "6208a4044ddba4832f412664"
+    ],
+    "yearOfPublication": 1930,
+    "languages": [
+      "german"
+    ]
+  },
+  {
+    "_id": "6208a4854ddba4832f41267f",
+    "title": "Knulp: drei Geschichten aus dem Leben Knulps",
+    "authors": [
+      "6208a4044ddba4832f412664"
+    ],
+    "yearOfPublication": 1900,
+    "languages": [
+      "german"
+    ],
+    "avgScore": 4,
+    "numOfReviews": 2
+  },
+  {
+    "_id": "6208a4ab4ddba4832f412685",
+    "title": "Peter Camenzind: Erzählung.",
+    "authors": [
+      "6208a4044ddba4832f412664"
+    ],
+    "yearOfPublication": 1905,
+    "languages": [
+      "german"
+    ],
+    "avgScore": 2,
+    "numOfReviews": 2
+  }
+]

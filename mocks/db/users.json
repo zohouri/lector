@@ -1,0 +1,14 @@
+[
+  {
+    "_id": "61fe1822dc6b689647080e0e",
+    "email": "sample@gmail.com",
+    "password": "asd123QWE!",
+    "isActive": true
+  },
+  {
+    "_id": "6208a67807018a0c873a2e95",
+    "email": "sample_2@gmail.com",
+    "password": "asd123QWE!",
+    "isActive": true
+  }
+]

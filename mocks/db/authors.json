@@ -1,0 +1,66 @@
+[
+  {
+    "_id": "61f8ecb625dd531dfa241e09",
+    "name": "Ernest Hemingway",
+    "birthDate": "1899-07-21T00:00:00.000+00:00",
+    "deathDate": "1961-07-02T00:00:00.000+00:00",
+    "bio": "Ernest Miller Hemingway was an American writer and journalist. During his lifetime he wrote and had published seven novels; six collections of short stories; and two works of non-fiction. Since his death three novels, four collections of short stories, and three non-fiction autobiographical works have been published. Hemingway received the Nobel Prize in Literature in 1954.",
+    "avatarURL": "https://covers.openlibrary.org/a/id/7236312-M.jpg"
+  },
+  {
+    "_id": "61fa798a7c5bd03112b0aa2b",
+    "name": "Charles Dickens",
+    "birthDate": "1812-02-07T00:00:00.000+00:00",
+    "deathDate": "1870-06-09T00:00:00.000+00:00",
+    "bio": "Charles Dickens, was the most popular English novelist of the Victorian era, and one of the most popular of all time. He created some of literature's most iconic characters, with the theme of social reform running throughout his work. The continuing popularity of his novels and short stories is such that they have never gone out of print.",
+    "avatarURL": "https://covers.openlibrary.org/a/id/12384588-M.jpg"
+  },
+  {
+    "_id": "61fa7b607c5bd03112b0aa40",
+    "name": "Fyodor Dostoyevsky",
+    "birthDate": "1821-11-11T00:00:00.000+00:00",
+    "deathDate": "1881-02-09T00:00:00.000+00:00",
+    "bio": "Russian novelist, journalist, short-story writer, whose psychological penetration into the human soul profoundly influenced the 20th century novel. Dostoevsky's novels have much autobiographical elements, but ultimately they deal with moral and philosophical questions. He presented interacting characters with contrasting views or ideas about freedom of choice, Socialism, atheisms, good and evil, happiness and so forth. Dostoevsky's central obsession was God, whom his characters constantly search through painful errors and humiliations.",
+    "avatarURL": "https://covers.openlibrary.org/a/id/6377428-M.jpg"
+  },
+  {
+    "_id": "61fa7bc67c5bd03112b0aa43",
+    "name": "Mark Twain",
+    "birthDate": "1835-11-30T00:00:00.000+00:00",
+    "deathDate": "1910-04-21T00:00:00.000+00:00",
+    "bio": "Mark Twain, was an American author and humorist. Twain is noted for his novels Adventures of Huckleberry Finn (1884), which has been called 'the Great American Novel', and The Adventures of Tom Sawyer (1876). He is extensively quoted. Twain was a friend to presidents, artists, industrialists, and European royalty.",
+    "avatarURL": "https://covers.openlibrary.org/a/id/11564855-M.jpg"
+  },
+  {
+    "_id": "61fa7c187c5bd03112b0aa4a",
+    "name": "Jane Austen",
+    "birthDate": "1775-12-16T00:00:00.000+00:00",
+    "deathDate": "1817-07-18T00:00:00.000+00:00",
+    "bio": "Jane Austen was an English writer. Although Austen was widely read in her lifetime, she published her works anonymously. The most urgent preoccupations of her bright, young heroines are courtship and marriage. Austen herself never married. Her best-known books include Pride and Prejudice (1813) and Emma (1816). Virginia Woolf called Austen 'the most perfect artist among women.'",
+    "avatarURL": "https://covers.openlibrary.org/a/id/7005426-M.jpg"
+  },
+  {
+    "_id": "6208a1f44ddba4832f412622",
+    "name": "William Shakespeare",
+    "birthDate": "1564-04-20T00:00:00.000+00:00",
+    "deathDate": "1616-04-23T00:00:00.000+00:00",
+    "bio": "William Shakespeare was an English poet and playwright, widely regarded as the greatest writer in the English language and the world's pre-eminent dramatist. He is often called England's national poet and the \"Bard of Avon\". His surviving works, including some collaborations, consist of 38 plays,[c] 154 sonnets, two long narrative poems, and several other poems. His plays have been translated into every major living language and are performed more often than those of any other playwright. He has invented over 1700 words and some of them are common, some of them are not.",
+    "avatarURL": "https://covers.openlibrary.org/a/id/6155644-M.jpg"
+  },
+  {
+    "_id": "6208a30d4ddba4832f412643",
+    "name": "Edgar Allan Poe",
+    "birthDate": "1809-01-19T00:00:00.000+00:00",
+    "deathDate": "1849-10-07T00:00:00.000+00:00",
+    "bio": "Edgar Allan Poe was an American writer, poet, editor and literary critic, considered part of the American Romantic Movement. Best known for his tales of mystery and the macabre, Poe was one of the earliest American practitioners of the short story and is considered the inventor of the detective-fiction genre. He is further credited with contributing to the emerging genre of science fiction.[1] He was the first well-known American writer to try to earn a living through writing alone, resulting in a financially difficult life and career.",
+    "avatarURL": "https://covers.openlibrary.org/a/id/6015207-M.jpg"
+  },
+  {
+    "_id": "6208a4044ddba4832f412664",
+    "name": "Hermann Hesse",
+    "birthDate": "1877-07-02T00:00:00.000+00:00",
+    "deathDate": "1962-08-09T00:00:00.000+00:00",
+    "bio": "Hermann Karl Hesse (2 July 1877 – 9 August 1962) was a German-Swiss poet, novelist, and painter. His best-known works include Demian, Steppenwolf, Siddhartha, and The Glass Bead Game, each of which explores an individual's search for authenticity, self-knowledge and spirituality. In 1946, he received the Nobel Prize in Literature.",
+    "avatarURL": "https://covers.openlibrary.org/a/id/6868166-M.jpg"
+  }
+]
