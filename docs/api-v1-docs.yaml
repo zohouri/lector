@@ -1,0 +1,1572 @@
+openapi: 3.1.0
+info:
+  title: API-V1
+  version: '1.0'
+  summary: Lector API documentation.
+  contact:
+    name: H. Zohouri
+servers:
+  - url: 'http://localhost:5002'
+    description: User app
+  - url: 'http://localhost:5001'
+    description: Admin app
+paths:
+  /author:
+    get:
+      summary: Get Authors
+      tags:
+        - author
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  results:
+                    $ref: '#/components/schemas/_results'
+                  totalResults:
+                    $ref: '#/components/schemas/_totalResults'
+                  data:
+                    type: array
+                    description: List of authors info.
+                    items:
+                      $ref: '#/components/schemas/Author'
+                required:
+                  - status
+                  - results
+                  - totalResults
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    results: 100
+                    totalResults: 500
+                    data:
+                      - _id: 61fa3771f03d8194a798fee9
+                        name: Ernest Hemingway
+                        birthDate: '1899-07-21T00:00:00.000+00:00'
+                        deathDate: '1961-07-02T00:00:00.000+00:00'
+                        bio: >-
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. 
+                        avatarURL: 'https://covers.openlibrary.org/a/id/7236312-M.jpg'
+                        createdAt: '2022-02-01T08:17:58.740+00:00'
+                        updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: get-author
+      description: Get authors list.
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - schema:
+            type: string
+            example: ernest
+          in: query
+          name: name
+          description: Search author by name.
+    post:
+      summary: Create Author
+      tags:
+        - author
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                  data:
+                    $ref: '#/components/schemas/Author'
+                required:
+                  - status
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+                    data:
+                      _id: 61fa3771f03d8194a798fee9
+                      name: Ernest Hemingway
+                      birthDate: '1899-07-21T00:00:00.000+00:00'
+                      deathDate: '1961-07-02T00:00:00.000+00:00'
+                      bio: >-
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. 
+                      avatarURL: 'https://covers.openlibrary.org/a/id/7236312-M.jpg'
+                      createdAt: '2022-02-01T08:17:58.740+00:00'
+                      updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: post-author
+      description: |-
+        Create a new author.
+
+        **ONLY ADMIN HAS ACCESS TO THIS ENDPOINT**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+            examples:
+              example-1:
+                value:
+                  name: Ernest Hemingway
+                  birthDate: '1899-07-21T00:00:00.000+00:00'
+                  deathDate: '1961-07-02T00:00:00.000+00:00'
+                  bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                  avatarURL: 'https://covers.openlibrary.org/a/id/7236312-M.jpg'
+  '/author/{authorId}':
+    patch:
+      summary: Update Author
+      tags:
+        - author
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                  data:
+                    $ref: '#/components/schemas/Author'
+                required:
+                  - status
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+                    data:
+                      _id: 61fa3771f03d8194a798fee9
+                      name: Ernest Hemingway
+                      birthDate: '1899-07-21T00:00:00.000+00:00'
+                      deathDate: '1961-07-02T00:00:00.000+00:00'
+                      bio: >-
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. 
+                      avatarURL: 'https://covers.openlibrary.org/a/id/7236312-M.jpg'
+                      createdAt: '2022-02-01T08:17:58.740+00:00'
+                      updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: 'patch-author-:authorId'
+      description: |-
+        Update an author info.
+
+        **ONLY ADMIN HAS ACCESS TO THIS ENDPOINT**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Author's name.
+                  minLength: 1
+                  example: Ernest Hemingway
+                birthDate:
+                  type: string
+                  description: Author's date of birth.
+                  example: '1899-07-21T00:00:00.000+00:00'
+                  format: date-time
+                deathDate:
+                  type: string
+                  description: Author's date of death.
+                  format: date-time
+                  example: '1961-07-02T00:00:00.000+00:00'
+                bio:
+                  type: string
+                  description: Author's biography.
+                  example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                avatarURL:
+                  type: string
+                  description: Author's image URL.
+                  format: uri
+                  example: 'https://covers.openlibrary.org/a/id/7236312-M.jpg'
+            examples:
+              example-1:
+                value:
+                  name: Ernest Hemingway
+                  birthDate: '1899-07-21T00:00:00.000+00:00'
+                  deathDate: '1961-07-02T00:00:00.000+00:00'
+                  bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                  avatarURL: 'https://covers.openlibrary.org/a/id/7236312-M.jpg'
+    parameters:
+      - schema:
+          type: string
+          format: ObjectId
+          example: 61f8ecb625dd531dfa241e09
+        name: authorId
+        in: path
+        required: true
+        description: Author's id.
+  /book:
+    get:
+      summary: Get Books
+      tags:
+        - book
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  results:
+                    $ref: '#/components/schemas/_results'
+                  totalResults:
+                    $ref: '#/components/schemas/_totalResults'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
+                required:
+                  - status
+                  - results
+                  - totalResults
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    results: 100
+                    totalResults: 500
+                    data:
+                      - _id: 61fa3771f03d8194a798fee9
+                        title: The Adventures of Oliver Twist
+                        authors:
+                          - 61fa798a7c5bd03112b0aa2b
+                        yearOfPublication: 1838
+                        languages:
+                          - english
+                        description: >-
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit.
+                        avgScore: 4
+                        numOfReviews: 75
+                        createdAt: '2022-02-01T08:17:58.740+00:00'
+                        updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: get-book
+      description: Get books list.
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - schema:
+            type: string
+            example: adventures
+          in: query
+          name: title
+          description: Book title.
+        - schema:
+            type: string
+            enum:
+              - arabic
+              - chinese
+              - english
+              - french
+              - german
+              - russian
+              - spanish
+            example: english
+          in: query
+          name: languages
+          description: Book language.
+        - schema:
+            type: string
+            format: ObjectId
+            example: 61fa798a7c5bd03112b0aa2b
+          in: query
+          name: authors
+          description: Author id.
+        - schema:
+            type: integer
+            example: 1950
+            minimum: 1
+          in: query
+          name: yearOfPublication
+          description: 'Year of book publication. Supports [gt]/[gte]/[lt]/[lte].'
+    post:
+      summary: Create Book
+      tags:
+        - book
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                  data:
+                    $ref: '#/components/schemas/Book'
+                required:
+                  - status
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+                    data:
+                      _id: 61fa3771f03d8194a798fee9
+                      title: The Adventures of Oliver Twist
+                      authors:
+                        - 61fa798a7c5bd03112b0aa2b
+                      yearOfPublication: 1838
+                      languages:
+                        - english
+                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                      createdAt: '2022-02-01T08:17:58.740+00:00'
+                      updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: post-book
+      description: |-
+        Create a book.
+
+        **ONLY ADMIN HAS ACCESS TO THIS ENDPOINT**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+            examples:
+              example-1:
+                value:
+                  title: The Adventures of Oliver Twist
+                  authors:
+                    - 61fa798a7c5bd03112b0aa2b
+                  yearOfPublication: 1838
+                  languages:
+                    - english
+                  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+  '/book/{bookId}':
+    parameters:
+      - schema:
+          type: string
+          example: 61fa79cf7c5bd03112b0aa2e
+          format: ObjectId
+        name: bookId
+        in: path
+        required: true
+        description: Book id.
+    patch:
+      summary: Update Book
+      tags:
+        - book
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                  data:
+                    $ref: '#/components/schemas/Book'
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+                    data:
+                      _id: 61fa3771f03d8194a798fee9
+                      title: The Adventures of Oliver Twist
+                      authors:
+                        - 61fa798a7c5bd03112b0aa2b
+                      yearOfPublication: 1838
+                      languages:
+                        - english
+                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                      avgScore: 4
+                      numOfReviews: 75
+                      createdAt: '2022-02-01T08:17:58.740+00:00'
+                      updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: patch-book-bookId
+      description: Update a book info.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Book title.
+                  example: The Adventures of Oliver Twist
+                  minLength: 1
+                authors:
+                  type: array
+                  description: Book authors ids.
+                  minItems: 1
+                  items:
+                    type: string
+                    format: ObjectId
+                    example: 61fa798a7c5bd03112b0aa2b
+                    minLength: 1
+                yearOfPublication:
+                  type: integer
+                  description: Year of book publication.
+                  example: 1838
+                  minimum: 1
+                languages:
+                  type: array
+                  minItems: 1
+                  description: Book languages.
+                  uniqueItems: false
+                  items:
+                    type: string
+                    enum:
+                      - arabic
+                      - chinese
+                      - english
+                      - french
+                      - german
+                      - russian
+                      - spanish
+                    example: english
+                description:
+                  type: string
+                  description: Book description.
+                  example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            examples:
+              example-1:
+                value:
+                  title: The Adventures of Oliver Twist
+                  authors:
+                    - 61fa798a7c5bd03112b0aa2b
+                  yearOfPublication: 1838
+                  languages:
+                    - arabic
+                  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+  /book/statByLang:
+    get:
+      summary: Get books statistics based on language
+      tags:
+        - book
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        count:
+                          type: integer
+                          description: Number of books written in this language.
+                          minimum: 1
+                          example: 150
+                        startYear:
+                          type: integer
+                          description: Year of publication of the first book.
+                          minimum: 1
+                          example: 1850
+                        endYear:
+                          type: integer
+                          description: Year of publication of the last book.
+                          minimum: 1
+                          example: 1980
+                        language:
+                          type: string
+                          enum:
+                            - arabic
+                            - chinese
+                            - english
+                            - french
+                            - german
+                            - russian
+                            - spanish
+                          example: english
+                          description: Book language.
+                      required:
+                        - count
+                        - startYear
+                        - endYear
+                        - language
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    data:
+                      - count: 150
+                        startYear: 1850
+                        endYear: 1980
+                        language: arabic
+      operationId: get-book-statByLang
+      description: Get books statistics based on language.
+  /review:
+    get:
+      summary: Get Reviews
+      tags:
+        - review
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  results:
+                    $ref: '#/components/schemas/_results'
+                  totalResults:
+                    $ref: '#/components/schemas/_totalResults'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Review'
+                required:
+                  - status
+                  - results
+                  - totalResults
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    results: 100
+                    totalResults: 500
+                    data:
+                      - _id: 61fa3771f03d8194a798fee9
+                        user: 61fa79cf7c5bd03112b0aa2e
+                        book: 61fa79cf7c5bd03112b0aa2e
+                        score: 4
+                        content: >-
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit.
+                        createdAt: '2022-02-01T08:17:58.740+00:00'
+                        updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: get-review
+      description: Get reviews list.
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - schema:
+            type: string
+            format: ObjectId
+            example: 61fa79cf7c5bd03112b0aa2e
+          in: query
+          name: user
+          description: ID of the user who registered the reviews.
+        - schema:
+            type: string
+            format: ObjectId
+            example: 61fa79cf7c5bd03112b0aa2e
+          in: query
+          name: book
+          description: ID of the book for which the review is registered.
+        - schema:
+            type: integer
+            minimum: 1
+            maximum: 5
+            example: 4
+          in: query
+          name: score
+          description: 'User score. Supports [gt]/[gte]/[lt]/[lte].'
+    post:
+      summary: Create Review
+      tags:
+        - review
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                  data:
+                    $ref: '#/components/schemas/Review'
+                required:
+                  - status
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+                    data:
+                      _id: 61fa3771f03d8194a798fee9
+                      user: 61fa79cf7c5bd03112b0aa2e
+                      book: 61fa79cf7c5bd03112b0aa2e
+                      score: 4
+                      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                      createdAt: '2022-02-01T08:17:58.740+00:00'
+                      updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: post-review
+      description: Create a review for a book.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+            examples:
+              example-1:
+                value:
+                  score: 4
+                  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+  '/review/{reviewId}':
+    parameters:
+      - schema:
+          type: string
+          format: ObjectId
+          example: 61fa79cf7c5bd03112b0aa2e
+        name: reviewId
+        in: path
+        required: true
+        description: Review id.
+    patch:
+      summary: Update Review
+      tags:
+        - review
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                  data:
+                    $ref: '#/components/schemas/Review'
+                required:
+                  - status
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+                    data:
+                      _id: 61fa3771f03d8194a798fee9
+                      user: 61fa79cf7c5bd03112b0aa2e
+                      book: 61fa79cf7c5bd03112b0aa2e
+                      score: 4
+                      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                      createdAt: '2022-02-01T08:17:58.740+00:00'
+                      updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: patch-review-reviewId
+      description: |-
+        Update a review.
+
+        **ONLY USERS HAVE ACCESS TO THIS ENDPOINT**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                score:
+                  type: integer
+                  description: User score.
+                  minimum: 1
+                  maximum: 5
+                  example: 4
+                content:
+                  type: string
+                  description: Review text.
+                  maxLength: 250
+                  example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            examples:
+              example-1:
+                value:
+                  score: 4
+                  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    delete:
+      summary: Delete Review
+      tags:
+        - review
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                  data:
+                    $ref: '#/components/schemas/Review'
+                required:
+                  - status
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+                    data:
+                      _id: 61fa3771f03d8194a798fee9
+                      user: 61fa79cf7c5bd03112b0aa2e
+                      book: 61fa79cf7c5bd03112b0aa2e
+                      score: 4
+                      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                      createdAt: '2022-02-01T08:17:58.740+00:00'
+                      updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: delete-review-reviewId
+      description: Delete a review.
+  /user:
+    get:
+      summary: Get Users
+      tags:
+        - user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  results:
+                    $ref: '#/components/schemas/_results'
+                  totalResults:
+                    $ref: '#/components/schemas/_totalResults'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                required:
+                  - status
+                  - results
+                  - totalResults
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    results: 100
+                    totalResults: 500
+                    data:
+                      - _id: 61fa3771f03d8194a798fee9
+                        email: example@gmail.com
+                        avatarURL: user-001.jpg
+                        isActive: true
+                        createdAt: '2022-02-01T08:17:58.740+00:00'
+                        updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: get-user
+      description: |-
+        Get users list.
+
+        **ONLY ADMIN HAS ACCESS TO THIS ENDPOINT**
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - schema:
+            type: string
+            format: email
+            example: example@gmail.com
+          in: query
+          name: email
+          description: User email address.
+        - schema:
+            type: boolean
+            example: 'false'
+          in: query
+          name: isActive
+          description: User account status.
+  /user/changePassword:
+    parameters: []
+    patch:
+      summary: Change My Password
+      tags:
+        - user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                required:
+                  - status
+                  - message
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+      operationId: patch-user-changePassword
+      description: |-
+        Update my account password.
+
+        **ONLY USERS HAVE ACCESS TO THIS ENDPOINT**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                oldPassword:
+                  type: string
+                  description: Old password.
+                  example: '123456'
+                newPassword:
+                  type: string
+                  description: New password.
+                  example: '123456789'
+                newPasswordConfirmation:
+                  type: string
+                  description: New password confirmation.
+                  example: '123456789'
+              required:
+                - oldPassword
+                - newPassword
+                - newPasswordConfirmation
+            examples:
+              example-1:
+                value:
+                  oldPassword: '123456'
+                  newPassword: '123456789'
+                  newPasswordConfirmation: '123456789'
+  /user/changeAvatar:
+    patch:
+      summary: Change My Avatar
+      tags:
+        - user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                  data:
+                    $ref: '#/components/schemas/User'
+                required:
+                  - status
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+                    data:
+                      _id: 61fa3771f03d8194a798fee9
+                      email: example@gmail.com
+                      avatarURL: user-001.jpg
+                      isActive: true
+                      createdAt: '2022-02-01T08:17:58.740+00:00'
+                      updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: patch-user-changeAvatar
+      description: |-
+        Update my avatar.
+
+        **ONLY USERS HAVE ACCESS TO THIS ENDPOINT**
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  description: 'Avatar image file (extension: jpg/jpeg/png, size < 10 MB)'
+            examples: {}
+  '/{userId}/deactivate':
+    parameters:
+      - schema:
+          type: string
+          example: 61fa79cf7c5bd03112b0aa2e
+          format: ObjectId
+        name: userId
+        in: path
+        required: true
+        description: User Id.
+    patch:
+      summary: Deactivate User Account
+      tags:
+        - user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                  data:
+                    $ref: '#/components/schemas/User'
+                required:
+                  - status
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+                    data:
+                      _id: 61fa3771f03d8194a798fee9
+                      email: example@gmail.com
+                      avatarURL: user-001.jpg
+                      isActive: false
+                      createdAt: '2022-02-01T08:17:58.740+00:00'
+                      updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: patch-userId-deactivate
+      description: >-
+        Deactivate user account. (The user will not be able to log in to his
+        account)
+
+
+        **ONLY ADMIN HAS ACCESS TO THIS ENDPOINT**
+  '/{userId}/activate':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    patch:
+      summary: Activate User Account
+      tags:
+        - user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                  data:
+                    $ref: '#/components/schemas/User'
+                required:
+                  - status
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+                    data:
+                      _id: 61fa3771f03d8194a798fee9
+                      email: example@gmail.com
+                      avatarURL: user-001.jpg
+                      isActive: true
+                      createdAt: '2022-02-01T08:17:58.740+00:00'
+                      updatedAt: '2022-02-01T08:17:58.740+00:00'
+      operationId: patch-userId-activate
+      description: |-
+        Activate user account. (The user will be able to log in to his account)
+
+        **ONLY ADMIN HAS ACCESS TO THIS ENDPOINT**
+  /admin/changePassword:
+    patch:
+      summary: Change My Password
+      tags:
+        - admin
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                required:
+                  - status
+                  - message
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+      operationId: patch-admin-changePassword
+      description: |-
+        Update my password.
+
+        **ONLY ADMIN HAS ACCESS TO THIS ENDPOINT**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                oldPassword:
+                  type: string
+                  description: Old password.
+                  example: '123456'
+                newPassword:
+                  type: string
+                  description: New password.
+                  example: '123456789'
+                newPasswordConfirmation:
+                  type: string
+                  description: New password confirmation.
+                  example: '123456789'
+              required:
+                - oldPassword
+                - newPassword
+                - newPasswordConfirmation
+            examples:
+              example-1:
+                value:
+                  oldPassword: '123456'
+                  newPassword: '123456789'
+                  newPasswordConfirmation: '123456789'
+  /auth/loginAdmin:
+    post:
+      summary: Login Admin
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                  accessToken:
+                    type: string
+                    description: JWT access token.
+                    example: >-
+                      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                required:
+                  - status
+                  - message
+                  - accessToken
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+                    accessToken: >-
+                      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+      operationId: post-auth-loginAdmin
+      description: |-
+        Login admin.
+
+        **ONLY ADMIN HAS ACCESS TO THIS ENDPOINT**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Admin account username.
+                  example: username
+                password:
+                  type: string
+                  description: Admin account password.
+                  example: '123456789'
+              required:
+                - username
+                - password
+            examples:
+              example-1:
+                value:
+                  username: username
+                  password: '123456789'
+  /auth/signupUser:
+    post:
+      summary: Signup User
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                  accessToken:
+                    type: string
+                    description: JWT access token.
+                    example: >-
+                      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                required:
+                  - status
+                  - message
+                  - accessToken
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+                    accessToken: >-
+                      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+      operationId: post-auth-signupUser
+      description: |-
+        Signup user.
+
+        **ONLY USERS HAVE ACCESS TO THIS ENDPOINT**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email address.
+                  format: email
+                  example: example@gmail.com
+                password:
+                  type: string
+                  description: Password.
+                  example: '123456789'
+                passwordConfirmation:
+                  type: string
+                  description: Password confirmation.
+                  example: '123456789'
+              required:
+                - email
+                - password
+                - passwordConfirmation
+            examples:
+              example-1:
+                value:
+                  email: example@gmail.com
+                  password: '123456789'
+                  passwordConfirmation: '123456789'
+  /auth/loginUser:
+    post:
+      summary: Login User
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                  accessToken:
+                    type: string
+                    description: JWT access token.
+                    example: >-
+                      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                required:
+                  - status
+                  - message
+                  - accessToken
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+                    accessToken: >-
+                      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+      operationId: post-auth-loginUser
+      description: |-
+        Login user.
+
+        **ONLY USERS HAVE ACCESS TO THIS ENDPOINT**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: example@gmail.com
+                  description: User email.
+                password:
+                  type: string
+                  description: User password.
+                  example: '123456789'
+              required:
+                - email
+                - password
+            examples:
+              example-1:
+                value:
+                  email: example@gmail.com
+                  password: '123456789'
+  /auth/logout:
+    post:
+      summary: Logout
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/_status'
+                  message:
+                    $ref: '#/components/schemas/_message'
+                required:
+                  - status
+                  - message
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: The operation was successful.
+      operationId: post-auth-logout
+      description: Logout (clear JWT cookie).
+components:
+  schemas:
+    _objectId:
+      type: string
+      title: ObjectId
+      format: ObjectId
+      example: 61fa3771f03d8194a798fee9
+      minLength: 24
+      maxLength: 24
+      description: MongoDb ObjectId.
+      readOnly: true
+    _status:
+      type: string
+      title: Status
+      enum:
+        - success
+        - fail
+      example: success
+    _message:
+      type: string
+      title: _message
+      description: Response message.
+      example: The operation was successful.
+      examples:
+        - The operation was successful.
+    _createdAt:
+      type: string
+      title: CreatedAt
+      format: date-time
+      example: '2022-02-01T08:17:58.740+00:00'
+      description: Document creation date-time.
+      examples:
+        - '2022-02-01T08:17:58.740+00:00'
+      readOnly: true
+    _updatedAt:
+      type: string
+      title: _updatedAt
+      format: date-time
+      example: '2022-02-01T08:17:58.740+00:00'
+      description: Document last update date-time.
+      examples:
+        - '2022-02-01T08:17:58.740+00:00'
+      readOnly: true
+    _results:
+      type: integer
+      title: Results
+      minimum: 0
+      example: 100
+      description: The number of results returned in response to this request.
+    _totalResults:
+      type: integer
+      title: TotalResults
+      description: The total number of results found in response to this request.
+      example: 500
+      minimum: 0
+    Author:
+      title: Author
+      type: object
+      examples: []
+      description: Author data model.
+      x-tags:
+        - author
+      properties:
+        _id:
+          $ref: '#/components/schemas/_objectId'
+        name:
+          type: string
+          description: Author's name.
+          example: Ernest Hemingway
+          minLength: 1
+        birthDate:
+          type: string
+          format: date-time
+          example: '1899-07-21T00:00:00.000+00:00'
+          description: Author's date of birth.
+        deathDate:
+          type: string
+          format: date-time
+          example: '1961-07-02T00:00:00.000+00:00'
+          description: Author's date of death.
+        bio:
+          type: string
+          description: Author's biography.
+          example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
+        avatarURL:
+          type: string
+          description: Author image URL.
+          format: uri
+          example: 'https://covers.openlibrary.org/a/id/7236312-M.jpg'
+        createdAt:
+          $ref: '#/components/schemas/_createdAt'
+        updatedAt:
+          $ref: '#/components/schemas/_updatedAt'
+      required:
+        - _id
+        - name
+        - birthDate
+        - createdAt
+        - updatedAt
+    Book:
+      title: Book
+      type: object
+      examples: []
+      description: Book data model.
+      properties:
+        _id:
+          $ref: '#/components/schemas/_objectId'
+        title:
+          type: string
+          description: Book title.
+          example: The Adventures of Oliver Twist
+          minLength: 1
+        authors:
+          type: array
+          description: Book authors ids.
+          minItems: 1
+          items:
+            type: string
+            format: ObjectId
+            example: 61fa798a7c5bd03112b0aa2b
+            minLength: 1
+        yearOfPublication:
+          type: integer
+          description: Year of book publication.
+          example: 1838
+          minimum: 1
+        languages:
+          type: array
+          minItems: 1
+          description: Book languages.
+          uniqueItems: false
+          items:
+            type: string
+            enum:
+              - arabic
+              - chinese
+              - english
+              - french
+              - german
+              - russian
+              - spanish
+            example: english
+        description:
+          type: string
+          description: Book description.
+          example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        avgScore:
+          type: integer
+          minimum: 1
+          maximum: 5
+          example: 4
+          description: Users average score.
+          readOnly: true
+        numOfReviews:
+          type: integer
+          minimum: 1
+          example: 75
+          description: Number of reviews submitted by users.
+          readOnly: true
+        createdAt:
+          $ref: '#/components/schemas/_createdAt'
+        updatedAt:
+          $ref: '#/components/schemas/_updatedAt'
+      required:
+        - _id
+        - title
+        - authors
+        - yearOfPublication
+        - languages
+        - createdAt
+        - updatedAt
+      x-tags:
+        - book
+    Review:
+      title: Review
+      type: object
+      description: Review data model.
+      properties:
+        _id:
+          $ref: '#/components/schemas/_objectId'
+        user:
+          type: string
+          description: The ID of the user who registered this review.
+          example: 61fa79cf7c5bd03112b0aa2e
+          format: ObjectId
+          readOnly: true
+        book:
+          type: string
+          description: ID of the book for which the review is registered.
+          format: ObjectId
+          example: 61fa79cf7c5bd03112b0aa2e
+          readOnly: true
+        score:
+          type: integer
+          description: User score.
+          minimum: 1
+          maximum: 5
+          example: 4
+        content:
+          type: string
+          description: Review text.
+          maxLength: 250
+          example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        createdAt:
+          $ref: '#/components/schemas/_createdAt'
+        updatedAt:
+          $ref: '#/components/schemas/_updatedAt'
+      required:
+        - _id
+        - user
+        - book
+        - score
+        - createdAt
+        - updatedAt
+      x-tags:
+        - review
+    User:
+      title: User
+      type: object
+      properties:
+        _id:
+          $ref: '#/components/schemas/_objectId'
+        email:
+          type: string
+          description: User email address.
+          format: email
+          example: example@gmail.com
+        avatarURL:
+          type: string
+          description: User image relative URL.
+          example: user-001.jpg
+        isActive:
+          type: boolean
+          description: User account status.
+        createdAt:
+          $ref: '#/components/schemas/_createdAt'
+        updatedAt:
+          $ref: '#/components/schemas/_updatedAt'
+      required:
+        - _id
+        - email
+        - isActive
+        - createdAt
+        - updatedAt
+      description: User daa model.
+      x-tags:
+        - user
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+      description: ''
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 100
+        example: 50
+        minimum: 1
+        maximum: 100
+      description: Number of results per response (pagination).
+    page:
+      name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+        example: 12
+        minimum: 1
+        default: 1
+      description: Page number (pagination).
+security:
+  - JWT access token: []
